@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace wx_api_rewards_customer_hub.Models;
 
 public class Member
@@ -12,12 +14,15 @@ public class Member
 
 public class LoginMemberDTO
 {
+    [Required]
     public string Preferred { get; set; }
+    [Required]
     public string Email { get; set; }
+    [Required]
     public string Mobile { get; set; }
 }
 
-public class OTPToken
+public class OTPTokenDTO
 {
     public string Token { get; set; }
 }
