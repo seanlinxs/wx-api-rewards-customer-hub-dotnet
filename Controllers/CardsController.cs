@@ -7,16 +7,24 @@ namespace wx_api_rewards_customer_hub.Controllers
     [ApiController]
     public class CardsController : ControllerBase
     {
+        private readonly ICdpService _cdp;
+        public CardsController(ICdpService cdp)
+        {
+            _cdp = cdp;
+        }
+
         [HttpPost]
         public async Task<ActionResult<Response<OTPTokenDTO>>> Login(LoginMemberDTO loginMemberDTO)
         {
-            OTPTokenDTO result = new OTPTokenDTO
+            var result = await _cdp.Login(loginMemberDTO);
+
+            OTPTokenDTO token = new OTPTokenDTO
             {
                 Token = "TEST OTP Token"
             };
             return Created(string.Empty, new Response<OTPTokenDTO>
             {
-                Data = result
+                Data = token
             });
         }
     }
