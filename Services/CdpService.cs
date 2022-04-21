@@ -34,8 +34,8 @@ public class CdpService : ICdpService
         await _conn.OpenAsync();
 
         await using var cmd = new NpgsqlCommand("SELECT * FROM rtapi.sp_get_mandy_order_card($1, $2, $3, $4, $5, $6)", _conn);
-        cmd.Parameters.AddWithValue(loginRequestDTO.Preferred == PreferredDevice.Email ? loginRequestDTO.Email : DBNull.Value);
-        cmd.Parameters.AddWithValue(loginRequestDTO.Preferred == PreferredDevice.Mobile ? loginRequestDTO.Mobile : DBNull.Value);
+        cmd.Parameters.AddWithValue(loginRequestDTO.Preferred == PreferredDevice.Email.ToString() ? loginRequestDTO.Email : DBNull.Value);
+        cmd.Parameters.AddWithValue(loginRequestDTO.Preferred == PreferredDevice.Mobile.ToString() ? loginRequestDTO.Mobile : DBNull.Value);
         cmd.Parameters.AddWithValue(DateTime.Now);
         cmd.Parameters.AddWithValue((int)CDP_SOURCE.CPORTAL);
         cmd.Parameters.AddWithValue(CDP_SOURCE.CPORTAL.ToString());

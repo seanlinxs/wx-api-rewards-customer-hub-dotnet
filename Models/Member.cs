@@ -30,12 +30,7 @@ public class LoginResultDTO
 public class LoginMemberDTO
 {
     [Required]
-    public PreferredDevice Preferred { get; set; }
-    public string Email { get; set; } = null!;
-    public string Mobile { get; set; } = null!;
-}
-
-public class OTPTokenDTO
-{
-    public string? Token { get; set; }
+    public string? Preferred { get; set; }
+    public string? Email { get; set; }
+    public string? Mobile { get; set; }
 }
