@@ -8,11 +8,17 @@ public enum PreferredDevice
     Mobile
 }
 
+public enum StoredProcedureResult
+{
+    Success,
+    Failure
+}
+
 public class LoginResultDTO
 {
     public string? ErrorCode { get; set; }
     public string? ErrorMessage { get; set; }
-    public int Result { get; set; }
+    public StoredProcedureResult Result { get; set; }
     public string? CRN { get; set; }
     public string? CardNumber { get; set; }
     public string? Email { get; set; }

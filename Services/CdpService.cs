@@ -1,5 +1,4 @@
 using Npgsql;
-using NpgsqlTypes;
 using wx_api_rewards_customer_hub.Models;
 
 public enum CDP_SOURCE
@@ -49,7 +48,7 @@ public class CdpService : ICdpService
         {
             ErrorCode = reader.IsDBNull(0) ? null : reader.GetString(0),
             ErrorMessage = reader.IsDBNull(1) ? null : reader.GetString(1),
-            Result = reader.GetFieldValue<int>(2),
+            Result = (StoredProcedureResult)(reader.GetFieldValue<int>(2)),
             CRN = reader.IsDBNull(3) ? null : reader.GetString(3),
             CardNumber = reader.IsDBNull(4) ? null : reader.GetString(4),
             Email = reader.IsDBNull(5) ? null : reader.GetString(5),
