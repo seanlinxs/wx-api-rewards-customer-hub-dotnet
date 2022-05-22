@@ -1,11 +1,11 @@
 using wx_api_rewards_customer_hub.Models;
 
-public interface IOtpSerivce
+public interface IOtpService
 {
     Task<Response<OTPResponseDTO>?> SendOTP(OTPRequestDTO otpRequestDTO);
 }
 
-public class OtpService : IOtpSerivce
+public class OtpService : IOtpService
 {
     private readonly IConfiguration _configuration;
     private readonly HttpClient _client;

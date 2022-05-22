@@ -8,9 +8,9 @@ namespace wx_api_rewards_customer_hub.Controllers
     public class CardsController : ControllerBase
     {
         private readonly ICdpService _cdp;
-        private readonly IOtpSerivce _otp;
+        private readonly IOtpService _otp;
 
-        public CardsController(ICdpService cdp, IOtpSerivce otp)
+        public CardsController(ICdpService cdp, IOtpService otp)
         {
             _cdp = cdp;
             _otp = otp;
