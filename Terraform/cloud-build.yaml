@@ -1,0 +1,18 @@
+steps:
+
+- id: docker-build
+  name: gcr.io/cloud-builders/docker
+  entrypoint: ./scripts/build-docker.sh
+  args: [wx-api-rewards-customer-hub, "$PROJECT_ID"]
+
+- id: deploy
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: ./scripts/deploy.sh
+  args: [wx-api-rewards-customer-hub, http, "$PROJECT_ID"]
+  waitFor: [docker-build]
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+images:
+- 'gcr.io/$PROJECT_ID/wx-api-rewards-customer-hub'
