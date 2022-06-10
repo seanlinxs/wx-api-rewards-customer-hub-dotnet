@@ -2,7 +2,7 @@
 readonly service="$1"
 readonly project_id="$2"
 
-PROJECT_ROOT=../..
+PROJECT_ROOT=..
 
 rm -fr $PROJECT_ROOT/obj
 rm -fr $PROJECT_ROOT/bin
