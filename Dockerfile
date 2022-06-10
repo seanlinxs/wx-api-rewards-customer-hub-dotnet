@@ -14,6 +14,7 @@ RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
+ENV ASPNETCORE_URLS=http://+:8080
 WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "wx-api-rewards-customer-hub.dll"]
