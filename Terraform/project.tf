@@ -16,11 +16,34 @@ resource "google_project" "project" {
 resource "google_project_iam_member" "owner" {
   role    = "roles/owner"
   member  = "user:${var.user}"
+  project = var.project
 
   depends_on = [google_project.project]
 }
 
 resource "google_project_service" "compute" {
-  service    = "[compute.googleapis.com](http://compute.googleapis.com/)"
+  service    = "compute.googleapis.com"
+  depends_on = [google_project.project]
+}
+
+resource "google_project_service" "container_registry" {
+  service    = "containerregistry.googleapis.com"
+  depends_on = [google_project.project]
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "cloud_run" {
+  service    = "run.googleapis.com"
+  depends_on = [google_project.project]
+}
+
+resource "google_project_service" "cloud_build" {
+  service    = "cloudbuild.googleapis.com"
+  depends_on = [google_project.project]
+}
+
+resource "google_project_service" "source_repo" {
+  service    = "sourcerepo.googleapis.com"
   depends_on = [google_project.project]
 }

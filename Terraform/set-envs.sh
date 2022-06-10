@@ -36,7 +36,7 @@ if [ -f "$target_file" ]; then
     source "$target_file"
 fi
 
-if [ -z "$TF_VAR_USER" ]; then
+if [ -z "$TF_VAR_user" ]; then
     readonly current_user=$(gcloud auth list --filter="status:ACTIVE" --format="value(account)")
 
     echo "Active gcloud account: $current_user"
@@ -53,18 +53,18 @@ if [ -z "$TF_VAR_USER" ]; then
 
     read
 
-    TF_VAR_USER="$current_user"
+    TF_VAR_user="$current_user"
 fi
 
-if [ -z "$TF_VAR_BILLING_ACCOUNT" ]; then
+if [ -z "$TF_VAR_billing_account" ]; then
     readonly current_billing_account=$(gcloud beta billing accounts list --filter="open=true" --format="value(displayName)" --limit 1)
 
     echo "Found billing account: $current_billing_account"
-    TF_VAR_BILLING_ACCOUNT="$current_billing_account"
+    TF_VAR_billing_account="$current_billing_account"
 fi
 
-if [ -z "$TF_VAR_REGION" ]; then
-    TF_VAR_REGION="$default_region"
+if [ -z "$TF_VAR_region" ]; then
+    TF_VAR_region="$default_region"
 fi
 
 echo

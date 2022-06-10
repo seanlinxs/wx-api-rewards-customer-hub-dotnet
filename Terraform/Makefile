@@ -36,36 +36,17 @@ done:
 	@echo
 	@printf "\e[93mThe setup is almost done!\e[0m\n"
 	@echo
-	@printf "Now you need to enable \e[1mEmail/Password\e[0m provider in the Firebase console.\n"
-	@${load_envs} && echo "To do this, visit https://console.firebase.google.com/u/0/project/$$TF_VAR_project/authentication/providers"
-	@echo
-	@printf "You can also downgrade the subscription plan to \e[1mSpark\e[0m (it's set to Blaze by default).\n"
-	@echo "The Spark plan is completely free and has all features needed for running this project."
-	@echo
-	@${load_envs} && printf "\e[92mCongratulations!\e[0m Your project should be available at: https://$$TF_VAR_project.web.app \n"
-	@echo
-	@${load_envs} && echo "If it's not, check if the build finished successfully: https://console.cloud.google.com/cloud-build/builds?project=$$TF_VAR_project"
-	@echo
-	@echo "If you need help, feel free to contact us at https://threedots.tech"
+	@${load_envs} && echo "Check if the build finished successfully: https://console.cloud.google.com/cloud-build/builds?project=$$TF_VAR_project"
 
 .PHONY: set_project
 set_project:
 	${load_envs} && gcloud config set project "$$TF_VAR_project"
 
-.PHONY: firestore
-firestore: set_project
-	${load_envs} && gcloud alpha firestore databases create "--region=$$TF_VAR_firebase_location"
-
-.PHONY: firebase_builder
-firebase_builder: set_project
-	[ -d cloud-builders-community ] || git clone https://github.com/GoogleCloudPlatform/cloud-builders-community.git
-	cd cloud-builders-community/firebase; gcloud builds submit .
-
 .PHONY: docker_images
 docker_images:
 	docker pull "${base_image}"
 
-	${load_envs} && for service in trainer trainings users; do \
+	${load_envs} && for service in wx-api-rewards-customer-hub; do \
 		tag="gcr.io/$$TF_VAR_project/$$service"; \
 		docker tag "${base_image}" "$$tag"; \
 		docker push "$$tag"; \

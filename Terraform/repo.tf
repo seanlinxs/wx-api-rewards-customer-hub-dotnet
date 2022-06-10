@@ -1,4 +1,4 @@
-resource "google_sourcerepo_repository" "rewards-customer-hub" {
+resource "google_sourcerepo_repository" "repo" {
   name = var.repository_name
 
   depends_on = [
@@ -9,7 +9,7 @@ resource "google_sourcerepo_repository" "rewards-customer-hub" {
 resource "google_cloudbuild_trigger" "trigger" {
   trigger_template {
     branch_name = "master"
-    repo_name   =  google_sourcerepo_repository.rewards-customer-hub.name
+    repo_name   =  google_sourcerepo_repository.repo.name
   }
 
   filename = "cloudbuild.yaml"

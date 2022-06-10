@@ -4,15 +4,17 @@ locals {
 }
 
 resource "google_project_iam_member" "api_keys_admin" {
-  role   = "roles/serviceusage.apiKeysViewer"
-  member = local.cloud_build_member
+  role    = "roles/serviceusage.apiKeysViewer"
+  member  = local.cloud_build_member
+  project = var.project
 
   depends_on = [google_project_service.cloud_build]
 }
 
 resource "google_project_iam_member" "cloud_run_admin" {
-  role   = "roles/run.admin"
-  member = local.cloud_build_member
+  role    = "roles/run.admin"
+  member  = local.cloud_build_member
+  project = var.project
 
   depends_on = [google_project_service.cloud_build]
 }
