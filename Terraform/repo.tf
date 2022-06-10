@@ -9,8 +9,8 @@ resource "google_sourcerepo_repository" "repo" {
 resource "google_cloudbuild_trigger" "trigger" {
   trigger_template {
     branch_name = "master"
-    repo_name   =  google_sourcerepo_repository.repo.name
+    repo_name   = google_sourcerepo_repository.repo.name
   }
 
-  filename = "cloudbuild.yaml"
+  filename = "cloud-build.yaml"
 }
