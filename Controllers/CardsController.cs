@@ -19,15 +19,16 @@ namespace wx_api_rewards_customer_hub.Controllers
         [HttpPost]
         public async Task<ActionResult<Response<OTPResponseDTO>>> Login(LoginMemberDTO loginMemberDTO)
         {
-            var loginResultDTO = await _cdp.Login(loginMemberDTO);
+            return Ok("Login succeeded");
+            // var loginResultDTO = await _cdp.Login(loginMemberDTO);
 
-            if (loginResultDTO.Result == StoredProcedureResult.Success)
-            {
-                Response<OTPResponseDTO>? otpResponseDTO = await _otp.SendOTP(new OTPRequestDTO(loginMemberDTO, loginResultDTO));
-                return Created(string.Empty, otpResponseDTO);
-            }
+            // if (loginResultDTO.Result == StoredProcedureResult.Success)
+            // {
+            //     Response<OTPResponseDTO>? otpResponseDTO = await _otp.SendOTP(new OTPRequestDTO(loginMemberDTO, loginResultDTO));
+            //     return Created(string.Empty, otpResponseDTO);
+            // }
 
-            return Unauthorized(new Error(loginResultDTO.ErrorCode, loginResultDTO.ErrorMessage));
+            // return Unauthorized(new Error(loginResultDTO.ErrorCode, loginResultDTO.ErrorMessage));
         }
     }
 }
