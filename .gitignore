@@ -458,3 +458,4 @@ $RECYCLE.BIN/
 
 # terraform
 .terraform
+terraform.tfstate*
