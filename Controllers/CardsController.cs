@@ -19,7 +19,7 @@ namespace wx_api_rewards_customer_hub.Controllers
         [HttpPost]
         public async Task<ActionResult<Response<OTPResponseDTO>>> Login(LoginMemberDTO loginMemberDTO)
         {
-            return Ok("Login succeeded");
+            return Ok("Login succeeded - cicd-demo-2");
             // var loginResultDTO = await _cdp.Login(loginMemberDTO);
 
             // if (loginResultDTO.Result == StoredProcedureResult.Success)
